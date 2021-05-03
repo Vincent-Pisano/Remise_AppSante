@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of all Citizens</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(listCitizens)}">
+
+            <h2>List of all Citizens</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>NAS</th>
+                    <th>firstName</th>
+                    <th>lastName</th>
+                    <th>password</th>
+                    <th>birthDate</th>
+                    <th>email</th>
+                    <th>sex</th>
+                    <th>city</th>
+                    <th>address</th>
+                    <th>postalCode</th>
+                    <th>phoneNbr</th>
+                    <th>isActive</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr th:each="citizen : ${listCitizens}">
+                    <td th:text="${citizen.idCitizen}">ID</td>
+                    <td th:text="${citizen.NAS}">NAS</td>
+                    <td th:text="${citizen.firstName}">FirstName</td>
+                    <td th:text="${citizen.lastName}">LastName</td>
+                    <td th:text="${citizen.password}">Password</td>
+                    <td th:text="${citizen.birthDate}">birthDate</td>
+                    <td th:text="${citizen.email}">Email</td>
+                    <td th:text="${citizen.sex}">Sex</td>
+                    <td th:text="${citizen.city}">City</td>
+                    <td th:text="${citizen.address}">Address</td>
+                    <td th:text="${citizen.postalCode}">PostalCode</td>
+                    <td th:text="${citizen.phoneNbr}">PhoneNbr</td>
+                    <td th:text="${citizen.isActive}">IsActive</td>
+                    <td><a th:href="${'/citizens/edit/'+citizen.idCitizen}" class="btn btn-info">Edit</a></td>
+                    <td><a th:href="${'/citizens/delete/'+citizen.idCitizen}" class="btn btn-danger">Delete</a></td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+</body>
+</html>
