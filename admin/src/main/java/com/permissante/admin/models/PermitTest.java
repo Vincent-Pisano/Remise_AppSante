@@ -1,7 +1,6 @@
-package com.permissante.appsante.model;
+package com.permissante.admin.models;
 
 import lombok.Data;
-
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -37,6 +36,11 @@ public class PermitTest {
     }
 
     public String toQrData() {
-        return citizen.getNAS() + " ; " + dateExpiration + " ; " + citizen.getPhoneNbr();
+        return citizen.getNAS() + ";" + dateExpiration + ";" + citizen.getPhoneNbr();
+    }
+
+    public boolean isPermitVaccin()
+    {
+        return this instanceof PermitVaccin;
     }
 }

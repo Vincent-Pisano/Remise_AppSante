@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Permit Edit</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body >
+    <div class="container">
+        <div th:if="${permit.isPresent()}">
+            <form th:action="@{'/permits/post'}">
+                <div class="form-group">
+                    <label for="idPermit">idPermit</label>
+                    <input type="number" class="form-control" id="idPermit" th:name="idPermit" th:value="${permit.get().idPermit}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="isVaccinCheckBox">isVaccin</label>
+                    <input
+                            type="checkbox"
+                            id="isVaccinCheckBox"
+                            th:checked="${permit.get().isPermitVaccin()}"
+                            name="isVaccin"
+                            disabled/>
+                </div>
+                <div class="form-group">
+                    <label for="dateTest">dateTest</label>
+                    <input type="date" class="form-control" id="dateTest" th:name="dateTest" th:value="${permit.get().dateTest}">
+                </div>
+                <div class="form-group">
+                    <label for="dateExpiration">dateExpiration</label>
+                    <input type="date" class="form-control" id="dateExpiration" th:name="dateExpiration" th:value="${permit.get().dateExpiration}">
+                </div>
+                <div class="form-group" id="nbrDoseDiv" th:if="${permit.get().isPermitVaccin()}">
+                    <label for="nbrDose">nbrDose</label>
+                    <input type="number" class="form-control" id="nbrDose" th:name="nbrDose" th:value="${permit.get().nbrDose}">
+                </div>
+                <div class="form-group">
+                    <label for="idCitizen">idCitizen</label>
+                    <input type="number" class="form-control" id="idCitizen" th:name="idCitizen" th:value="${permit.get().citizen.idCitizen}">
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

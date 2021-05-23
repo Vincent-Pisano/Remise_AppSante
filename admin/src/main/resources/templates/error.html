@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <th:block th:include="layout/header"></th:block>
+    <script src=
+                    "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+</head>
+<body onload="toggler('stackTrace');">
+<div class="container">
+    <h1>Oups, An error occured...</h1>
+    <button class="btn btn-success" style="margin-bottom: 15px" onclick="toggler('stackTrace')">Click Here to see the Stack Trace</button>
+    <table class="table table-striped">
+        <tr>
+            <td>Date</td>
+            <td th:text="${timestamp}"/>
+        </tr>
+        <tr>
+            <td>Path</td>
+            <td th:text="${path}"/>
+        </tr>
+        <tr>
+            <td>Error</td>
+            <td th:text="${error}"/>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td th:text="${status}"/>
+        </tr>
+        <tr>
+            <td>Message</td>
+            <td th:text="${message}"/>
+        </tr>
+        <tr>
+            <td>Exception</td>
+            <td th:text="${exception}"/>
+        </tr>
+            <tr id="stackTrace">
+                <td>Trace</td>
+                <td>
+                    <pre th:text="${trace}"/>
+                </td>
+            </tr>
+    </table>
+</div>
+<script>
+    function toggler(divId) {
+        $("#" + divId).toggle();
+    }
+</script>
+</body>
+</html>

@@ -1,13 +1,16 @@
 package com.permissante.appsante.controller;
 
 import com.permissante.appsante.model.Citizen;
+import com.permissante.appsante.model.CredentialsPermit;
 import com.permissante.appsante.model.PermitTest;
 import com.permissante.appsante.services.AppSanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
-@CrossOrigin("http://localhost:5178")
+//@CrossOrigin("http://localhost:5178")
 public class AppSanteController {
 
     @Autowired
@@ -48,9 +51,20 @@ public class AppSanteController {
         return service.getForgotPassword(email);
     }
 
+    @GetMapping("/appSante/qrCode/{idPermit}")
+    public void getQRCodeByNas(@PathVariable int idPermit, HttpServletResponse response)
+    {
+        service.getQRCodeByNAS(idPermit, response);
+    }
+
     /*
         Unused methods
      */
+
+    @GetMapping("/appSante/getCredentialsPermit/{NAS}")
+    public CredentialsPermit getPermitFromRAMQ(@PathVariable("NAS") String NAS) {
+        return service.getCredentialsFromRAMQ(NAS);
+    }
 
     @GetMapping("/appSante/getCitizen")
     public Citizen getCitizen(@RequestParam String NAS) {

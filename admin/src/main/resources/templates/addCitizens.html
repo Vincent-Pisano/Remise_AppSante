@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Citizen Add</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{'/citizen/post'}">
+        <div class="form-group">
+            <label for="NAS">NAS</label>
+            <input class="form-control" id="NAS" th:name="NAS">
+        </div>
+        <div class="form-group">
+            <label for="lastName">lastName</label>
+            <input class="form-control" id="lastName" th:name="lastName">
+        </div>
+        <div class="form-group">
+            <label for="firstName">firstName</label>
+            <input class="form-control" id="firstName" th:name="firstName">
+        </div>
+        <div class="form-group">
+            <label for="email">email</label>
+            <input type="email" class="form-control" id="email" th:name="email">
+        </div>
+        <div class="form-group">
+            <label for="password">password</label>
+            <input type="password" class="form-control" id="password" th:name="password">
+        </div>
+        <div class="form-group">
+            <label for="sex">sex</label>
+            <input class="form-control" id="sex" th:name="sex">
+        </div>
+        <div class="form-group">
+            <label for="birthDate">birthDate</label>
+            <input type="date" class="form-control" id="birthDate" th:name="birthDate">
+        </div>
+        <div class="form-group">
+            <label for="city">city</label>
+            <input class="form-control" id="city" th:name="city">
+        </div>
+        <div class="form-group">
+            <label for="address">address</label>
+            <input class="form-control" id="address" th:name="address">
+        </div>
+        <div class="form-group">
+            <label for="postalCode">postalCode</label>
+            <input class="form-control" id="postalCode" th:name="postalCode">
+        </div>
+        <div class="form-group">
+            <label for="phoneNbr">phoneNbr</label>
+            <input class="form-control" id="phoneNbr" th:name="phoneNbr">
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
+</body>
+</html>

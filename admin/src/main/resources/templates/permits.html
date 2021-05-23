@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Permit List</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(listPermis)}">
+
+        <h2>List of all Permit</h2>
+        <table class="table table-striped text-center">
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">isActive</th>
+                <th class="text-center">dateTest</th>
+                <th class="text-center">dateExpiration</th>
+                <th class="text-center">nbrDose</th>
+                <th class="text-center">Code QR</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">idCitizen</th>
+                <th class="text-center">isActive</th>
+                <th class="text-center">Edit</th>
+                <th class="text-center">Deactivate</th>
+            </tr>
+            <tr th:each="permit : ${listPermis}">
+                <td th:text="${permit.idPermit}"></td>
+                <td th:text="${permit.isActive}"></td>
+                <td th:text="${permit.dateTest}"></td>
+                <td th:text="${permit.dateExpiration}"></td>
+                <td th:if="${permit.isPermitVaccin()}" th:text="${permit.nbrDose}"></td>
+                <td th:if="${!permit.isPermitVaccin()}">---</td>
+                <td>
+                    <img th:src="${'/permits/qrCode/'+permit.idPermit}" style="max-width: 30%;" class="img-thumbnail">
+                </td>
+                <td th:if="${permit.isPermitVaccin()}" th:text="VACCIN"></td>
+                <td th:if="${!permit.isPermitVaccin()}" th:text="TEST"></td>
+                <td th:text="${permit.citizen.idCitizen}"></td>
+                <td th:text="${permit.citizen.isActive()}"></td>
+                <td><a th:href="${'/permits/edit/'+permit.idPermit}" class="btn btn-info">Edit</a></td>
+                <td><a th:href="${'/permits/delete/'+permit.idPermit}" class="btn btn-danger">Deactivate</a></td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+</body>
+</html>

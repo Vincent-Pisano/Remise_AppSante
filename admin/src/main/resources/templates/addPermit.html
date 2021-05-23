@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Permit Add</title>
+    <th:block th:include="layout/header"></th:block>
+    <script src=
+                    "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{'/permits/post'}">
+        <div class="form-group">
+            <label for="isVaccinCheckBox">isVaccin</label>
+            <input
+                    type="checkbox"
+                    id="isVaccinCheckBox"
+                    th:checked="${isVaccin}"
+                    th:name="isVaccin"
+                    onclick="toggler('nbrDoseDiv')"/>
+        </div>
+        <div class="form-group">
+            <label for="dateTest">dateTest</label>
+            <input type="date" class="form-control" id="dateTest" th:name="dateTest">
+        </div>
+        <div class="form-group">
+            <label for="dateExpiration">dateExpiration</label>
+            <input type="date" class="form-control" id="dateExpiration" th:name="dateExpiration">
+        </div>
+        <div class="form-group" id="nbrDoseDiv">
+            <label for="nbrDose">nbrDose</label>
+            <input type="number" class="form-control" id="nbrDose" th:name="nbrDose">
+        </div>
+        <div class="form-group">
+            <label for="idCitizen">idCitizen</label>
+            <input type="number" class="form-control" id="idCitizen" th:name="idCitizen">
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+<script>
+    function toggler(divId) {
+        $("#" + divId).toggle();
+    }
+</script>
+</body>
+</html>

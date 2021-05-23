@@ -20,6 +20,7 @@ public class MinistryService {
     public Citizen isCitizenValid(Citizen citizen) {
         try {
             if (citizen != null) {
+                System.out.println(citizen.toString());
                 Citizen citizenRAMQ = citizenRepository.findByNASAndPasswordAndLastNameAndFirstNameAndBirthDate(
                         citizen.getNAS(), citizen.getPassword(), citizen.getLastName(), citizen.getFirstName(), citizen.getBirthDate());
                 if (citizenRAMQ != null && citizenRAMQ.isActive()) {

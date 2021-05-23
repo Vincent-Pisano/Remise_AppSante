@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Citizen Edit</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:if="${citizen.isPresent()}">
+        <form th:action="@{'/citizen/post'}">
+            <div class="form-group">
+                <label for="idCitizen">idCitizen</label>
+                <input type="number" class="form-control" id="idCitizen" th:name="idCitizen"
+                       th:value="${citizen.get().idCitizen}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="NAS">NAS</label>
+                <input class="form-control" id="NAS" th:name="NAS" th:value="${citizen.get().NAS}">
+            </div>
+            <div class="form-group">
+                <label for="lastName">lastName</label>
+                <input class="form-control" id="lastName" th:name="lastName" th:value="${citizen.get().lastName}">
+            </div>
+            <div class="form-group">
+                <label for="firstName">firstName</label>
+                <input class="form-control" id="firstName" th:name="firstName" th:value="${citizen.get().firstName}">
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="email" class="form-control" id="email" th:name="email" th:value="${citizen.get().email}">
+            </div>
+            <div class="form-group">
+                <label for="sex">sex</label>
+                <input class="form-control" id="sex" th:name="sex" th:value="${citizen.get().sex}">
+            </div>
+            <div class="form-group">
+                <label for="birthDate">birthDate</label>
+                <input type="date" class="form-control" id="birthDate" th:name="birthDate"
+                       th:value="${citizen.get().birthDate}">
+            </div>
+            <div class="form-group">
+                <label for="city">city</label>
+                <input class="form-control" id="city" th:name="city" th:value="${citizen.get().city}">
+            </div>
+            <div class="form-group">
+                <label for="address">address</label>
+                <input class="form-control" id="address" th:name="address" th:value="${citizen.get().address}">
+            </div>
+            <div class="form-group">
+                <label for="postalCode">postalCode</label>
+                <input class="form-control" id="postalCode" th:name="postalCode" th:value="${citizen.get().postalCode}">
+            </div>
+            <div class="form-group">
+                <label for="phoneNbr">phoneNbr</label>
+                <input class="form-control" id="phoneNbr" th:name="phoneNbr" th:value="${citizen.get().phoneNbr}">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

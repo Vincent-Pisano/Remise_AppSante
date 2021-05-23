@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Citizen Edit</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+
+</div>
+<div class="container">
+    <div th:if="${citizen.isPresent()}">
+        <form th:action="@{'/citizens/updateChildList'}">
+            <div class="form-group">
+                <label for="NASParent">NAS</label>
+                <input class="form-control" id="NASParent" th:name="NASParent" th:value="${citizen.get().NAS}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="childList">Childrens</label>
+                <select multiple class="form-control" id="childList">
+                    <option th:each="children : ${citizen.get().getChildList()}" th:text="${children.getNAS()}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="NASChild">NAS</label>
+                <input class="form-control" id="NASChild" th:name="NASChild">
+            </div>
+            <div class="form-group">
+                <label for="isDeleting">isDeleting</label>
+                <input
+                        type="checkbox"
+                        id="isDeleting"
+                        name="isDeleting"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+        <a th:href="${'/citizens/'}" class="btn btn-success" style="margin-top: 10px;">Confirm</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -171,10 +171,11 @@ public class AppSanteServiceTests {
         String filepath = getFilePathQR(citizen);
         permit.setCitizen(citizen);
         try {
-            appSanteService.generateQR(permit.toQrData(), filepath);
+            appSanteService.generateQR(permit, filepath);
             File qrCode = new File(filepath);
 
             assertTrue(qrCode.exists());
+            assertNotNull(permit.getQrcode());
         } catch (Exception ex) {
             ex.printStackTrace();
             fail();
@@ -190,7 +191,7 @@ public class AppSanteServiceTests {
         String filepathPDF = getFilePathPDF(citizen);
         permit.setCitizen(citizen);
         try {
-            appSanteService.generateQR(permit.toQrData(), filepathQR);
+            appSanteService.generateQR(permit, filepathQR);
             appSanteService.generatePDF(filepathPDF, filepathQR);
             File pdf = new File(filepathPDF);
 

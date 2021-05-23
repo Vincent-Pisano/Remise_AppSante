@@ -3,6 +3,7 @@ package com.permissante.appsante.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -14,16 +15,21 @@ import com.itextpdf.layout.element.Paragraph;
 import com.permissante.appsante.model.*;
 import com.permissante.appsante.repositories.CitizenRepository;
 import com.permissante.appsante.repositories.PermitRepository;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
+import javax.imageio.ImageIO;
 import javax.mail.internet.MimeMessage;
-import java.io.File;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
@@ -31,6 +37,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /*
  *  This class represent ALL the service of the application
@@ -161,6 +168,7 @@ public class AppSanteService {
             if (credentialsPermit.getType().equals("VACCIN")) {
                 flag = createPermitVaccin(citizen, credentialsPermit.getDateTest(), credentialsPermit.getNbrDose());
             } else {
+
                 if (credentialsPermit.getResults().equals("NEGATIVE")) {
                     flag = createPermitTest(citizen, credentialsPermit.getDateTest());
                 } else {
@@ -236,7 +244,8 @@ public class AppSanteService {
             String filePathPDF = filePath + extensionPDF;
 
             try {
-                return (generateQR(permit.toQrData(), filePathQR) && generatePDF(filePathPDF, filePathQR));
+                return (generateQR(permit, filePathQR) &&
+                        generatePDF(filePathPDF, filePathQR));
                 /*return (  generateQR(permit.toQrData(), filePathQR) &&
                             generatePDF(filePathPDF, filePathQR) &&
                             sendEmail(permit.getCitizen().getEmail(), filePathPDF, filePathQR));*/
@@ -248,7 +257,7 @@ public class AppSanteService {
         return false;
     }
 
-    public boolean generateQR(String data, String filepath) {
+    public boolean generateQR(PermitTest permit, String filepath) {
         File directory = new File(filepath);
         directory.getParentFile().mkdirs();
 
@@ -256,10 +265,23 @@ public class AppSanteService {
         QRCodeWriter codeWriter = new QRCodeWriter();
 
         try {
-            MatrixToImageWriter.writeToPath(codeWriter.encode(data, BarcodeFormat.QR_CODE,
+            //QR PNG on directory
+            MatrixToImageWriter.writeToPath(codeWriter.encode(permit.toQrData(), BarcodeFormat.QR_CODE,
                     Integer.parseInt(Objects.requireNonNull(environment.getProperty("qrCode.width"))),
                     Integer.parseInt(Objects.requireNonNull(environment.getProperty("qrCode.height")))),
                     Objects.requireNonNull(environment.getProperty("qrCode.extension")), path);
+
+            //QR PNG for database
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BufferedImage qrCode = MatrixToImageWriter.toBufferedImage(qrCodeWriter.encode(permit.toQrData(),
+                    BarcodeFormat.QR_CODE,
+                    Integer.parseInt(Objects.requireNonNull(environment.getProperty("qrCode.width"))),
+                    Integer.parseInt(Objects.requireNonNull(environment.getProperty("qrCode.height")))));
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            ImageIO.write(qrCode, "png", stream);
+            stream.flush();
+            permit.setQrcode(stream.toByteArray());
+            permitRepository.save(permit);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -341,6 +363,20 @@ public class AppSanteService {
         return null;
     }
 
+    public void getQRCodeByNAS(int idPermit, HttpServletResponse response)
+    {
+        response.setContentType("image/png");
+        Optional<PermitTest> permit = permitRepository.findById(idPermit);
+        if (permit.isPresent()) {
+            InputStream is = new ByteArrayInputStream(permit.get().getQrcode());
+            try {
+                IOUtils.copy(is, response.getOutputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /*
      * CALL WEBSERVICE MINISTRY
      */
@@ -352,7 +388,7 @@ public class AppSanteService {
             ObjectMapper mapper = new ObjectMapper();
             String jsonCitizen = mapper.writeValueAsString(citizen);
             ResponseEntity<Citizen> responseEntity = restTemplate.getForEntity(uri, Citizen.class, jsonCitizen);
-            return Objects.requireNonNull(responseEntity.getBody());
+            return responseEntity.getBody();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -377,10 +413,12 @@ public class AppSanteService {
         RestTemplate restTemplate = new RestTemplate();
         try {
             String jsonCredentials = restTemplate.getForObject(uri, String.class);
+            if (jsonCredentials != null)
             return new ObjectMapper().setDateFormat(simpleDateFormat).readValue(jsonCredentials, CredentialsPermit.class);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return null;
         }
+        return null;
     }
 }

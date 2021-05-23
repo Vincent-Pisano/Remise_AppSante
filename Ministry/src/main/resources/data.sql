@@ -37,7 +37,7 @@ values (9, '68JZ4ZT', 'ImLiedTo', 'Caesar', 'Liè', 'Autre', STR_TO_DATE('11-11-
 insert into citizen (citizen_id, social_ins_nbr, password, last_name, first_name, sex, birth_date, city, address,
                      postal_code, email, phone_number, is_active)
 values (10, 'VAZET1Y', 'qerthqeh', 'Caesar', 'Valérie', 'Femme', STR_TO_DATE('06-08-1948', '%d-%m-%Y'), 'Montreal',
-        '108 rue Papineau', 'H79 JGH', 'Valébou@gmail.com', '5149863257', TRUE);
+        '108 rue Papineau', 'H79 JGH', 'Valebou@gmail.com', '5149863257', TRUE);
 insert into citizen (citizen_id, social_ins_nbr, password, last_name, first_name, sex, birth_date, city, address,
                      postal_code, email, phone_number, is_active)
 values (11, 'JODNZ52', '$hfg$254', 'Leindecker', 'Christophe', 'Homme', STR_TO_DATE('15-04-82', '%d-%m-%Y'),
