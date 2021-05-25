@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-//@CrossOrigin("http://localhost:5178")
+@CrossOrigin("http://localhost:5178")
 public class AppSanteController {
 
     @Autowired
@@ -52,9 +52,9 @@ public class AppSanteController {
     }
 
     @GetMapping("/appSante/qrCode/{idPermit}")
-    public void getQRCodeByNas(@PathVariable int idPermit, HttpServletResponse response)
+    public void getQRCode(@PathVariable int idPermit, HttpServletResponse response)
     {
-        service.getQRCodeByNAS(idPermit, response);
+        service.getQRCode(idPermit, response);
     }
 
     /*

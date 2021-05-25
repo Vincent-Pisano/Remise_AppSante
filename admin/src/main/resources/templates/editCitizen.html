@@ -28,6 +28,10 @@
                 <input class="form-control" id="firstName" th:name="firstName" th:value="${citizen.get().firstName}">
             </div>
             <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" id="password" th:name="password" th:value="${citizen.get().password}">
+            </div>
+            <div class="form-group">
                 <label for="email">email</label>
                 <input type="email" class="form-control" id="email" th:name="email" th:value="${citizen.get().email}">
             </div>

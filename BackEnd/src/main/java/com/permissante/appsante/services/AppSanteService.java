@@ -244,11 +244,11 @@ public class AppSanteService {
             String filePathPDF = filePath + extensionPDF;
 
             try {
-                return (generateQR(permit, filePathQR) &&
-                        generatePDF(filePathPDF, filePathQR));
-                /*return (  generateQR(permit.toQrData(), filePathQR) &&
+                /*return (generateQR(permit, filePathQR) &&
+                        generatePDF(filePathPDF, filePathQR));*/
+                return (  generateQR(permit, filePathQR) &&
                             generatePDF(filePathPDF, filePathQR) &&
-                            sendEmail(permit.getCitizen().getEmail(), filePathPDF, filePathQR));*/
+                            sendEmail(permit.getCitizen().getEmail(), filePathPDF, filePathQR));
             } catch (Exception ex) {
                 ex.printStackTrace();
                 return false;
@@ -363,7 +363,7 @@ public class AppSanteService {
         return null;
     }
 
-    public void getQRCodeByNAS(int idPermit, HttpServletResponse response)
+    public void getQRCode(int idPermit, HttpServletResponse response)
     {
         response.setContentType("image/png");
         Optional<PermitTest> permit = permitRepository.findById(idPermit);
