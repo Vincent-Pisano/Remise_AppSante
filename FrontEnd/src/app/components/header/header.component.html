@@ -1,0 +1,35 @@
+<header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light mx-background-top-linear">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white mr-auto ml-4" href="https://github.com/zaratechs/420-345-G001-A20/wiki/Réflexion-Travail-Final">
+            Portfolio
+        </a>  
+    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" 
+                aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/home']" 
+              class="nav-link text-capitalize px-3" >home</a>
+            </li>
+            <li class="nav-item"  [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/subscribe']"
+              class="nav-link text-capitalize px-3" >Subscribe</a>
+            </li>
+            <li *ngIf="!this.service.userIsLogIn()" class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/login']" 
+              class="nav-link  text-capitalize px-3" >Login</a>
+            </li>
+            <li *ngIf="this.service.userIsLogIn()" class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{exact:true}">
+              <a [routerLink]="['/logout']" 
+              class="nav-link  text-capitalize px-3" >Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+</header>

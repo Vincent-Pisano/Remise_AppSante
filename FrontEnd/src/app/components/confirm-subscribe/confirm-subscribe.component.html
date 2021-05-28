@@ -1,0 +1,174 @@
+<section class="py-4">
+    <h1 class="mt-4">Entrez vos données</h1>
+  
+    <form [formGroup]="confirmSubscribeForm" (ngSubmit)="onSubmit()">
+      <div class="field name-box my-4">
+        <input type="text" id="NAS" formControlName="nas" placeholder="Numéro d'Assurance Maladie" readonly/>
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.nas.valid)}" class="notModifiable" for="NAS">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.nas.dirty && formConfirmeSubscribe.nas.valid}">NAS</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.nas.valid && (formConfirmeSubscribe.nas.dirty ||formConfirmeSubscribe.nas.touched)">
+        <div [hidden]="!formConfirmeSubscribe.nas.errors.required" class="alert alert-danger py-2 mt-3">
+          Le NAS est obligatoire
+        </div>
+        <div [hidden]="!formConfirmeSubscribe.nas.errors.minlength" class="alert alert-danger py-2 mt-3">
+          Le NAS doit être d'au moins 7 charactères
+        </div>
+      </div>
+  
+      <div class="field name-box my-4">
+        <input type="text" id="password" formControlName="password" placeholder="Mot de Passe" readonly/>
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.password.valid)}" for="password" >
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.password.dirty && formConfirmeSubscribe.password.valid}">MDP</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.password.valid && (formConfirmeSubscribe.password.dirty ||formConfirmeSubscribe.password.touched)">
+        <div [hidden]="!formConfirmeSubscribe.password.errors.required" class="alert alert-danger py-2 mt-3">
+          Le mot de passe est obligatoire
+        </div>
+        <div [hidden]="!formConfirmeSubscribe.password.errors.minlength" class="alert alert-danger py-2 mt-3">
+          Le mot de passe doit être d'au moins 4 charactères
+        </div>
+      </div>
+  
+      <div class="field name-box my-4">
+        <input type="date" id="birthDate" formControlName="birthDate" placeholder="Date de Naissance" readonly/>
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.birthDate.valid)}" for="birthDate">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.birthDate.dirty && formConfirmeSubscribe.birthDate.valid}">age</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.birthDate.valid && (formConfirmeSubscribe.birthDate.dirty ||formConfirmeSubscribe.birthDate.touched)">
+        <div [hidden]="!formConfirmeSubscribe.birthDate.errors.required" class="alert alert-danger py-2 mt-3">
+          La date de naissance est obligatoire
+        </div>
+      </div>
+  
+      <div class="field name-box my-4">
+        <input type="text" id="firstName" formControlName="firstName" placeholder="Prénom" readonly/>
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.firstName.valid)}" for="firstName">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.firstName.dirty && formConfirmeSubscribe.firstName.valid}">Prénom</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.firstName.valid && (formConfirmeSubscribe.firstName.dirty ||formConfirmeSubscribe.firstName.touched)">
+        <div [hidden]="!formConfirmeSubscribe.firstName.errors.required" class="alert alert-danger py-2 mt-3">
+          Le prénom est obligatoire
+        </div>
+      </div>
+  
+      <div class="field name-box my-4">
+        <input type="text" id="lastName" formControlName="lastName" placeholder="Nom" readonly/>
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.lastName.valid)}" for="lastName">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.lastName.dirty && formConfirmeSubscribe.lastName.valid}">Nom</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.lastName.valid && (formConfirmeSubscribe.lastName.dirty ||formConfirmeSubscribe.lastName.touched)">
+        <div [hidden]="!formConfirmeSubscribe.lastName.errors.required" class="alert alert-danger py-2 mt-3">
+          Le nom de famille est obligatoire
+        </div>
+      </div>
+
+      <div class="field name-box my-4">
+        <input type="text" id="email" formControlName="email" placeholder="email" />
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.email.valid)}" for="email">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.email.dirty && formConfirmeSubscribe.email.valid}">Email</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.email.valid && (formConfirmeSubscribe.email.dirty ||formConfirmeSubscribe.email.touched)">
+        <div [hidden]="!formConfirmeSubscribe.email.errors.required" class="alert alert-danger py-2 mt-3">
+          L'email est obligatoire
+        </div>
+        <div [hidden]="!formConfirmeSubscribe.email.errors.pattern" class="alert alert-danger py-2 mt-3">
+            Format invalide
+        </div>
+      </div>
+
+      <div class="field name-box my-4">
+        <input type="text" id="sex" formControlName="sex" placeholder="Sex" readonly/>
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.sex.valid)}" for="sex">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.sex.dirty && formConfirmeSubscribe.sex.valid}">Sex</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.sex.valid && (formConfirmeSubscribe.sex.dirty ||formConfirmeSubscribe.sex.touched)">
+        <div [hidden]="!formConfirmeSubscribe.sex.errors.required" class="alert alert-danger py-2 mt-3">
+          Le sex est obligatoire
+        </div>
+      </div>
+
+      <div class="field name-box my-4">
+        <input type="text" id="city" formControlName="city" placeholder="Ville" />
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.city.valid)}" for="city">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.city.dirty && formConfirmeSubscribe.city.valid}">Ville</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.city.valid && (formConfirmeSubscribe.city.dirty ||formConfirmeSubscribe.city.touched)">
+        <div [hidden]="!formConfirmeSubscribe.city.errors.required" class="alert alert-danger py-2 mt-3">
+          La ville est obligatoire
+        </div>
+      </div>
+
+      <div class="field name-box my-4">
+        <input type="text" id="address" formControlName="address" placeholder="Adresse" />
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.address.valid)}" for="address">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.address.dirty && formConfirmeSubscribe.address.valid}">Adresse</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.address.valid && (formConfirmeSubscribe.address.dirty ||formConfirmeSubscribe.address.touched)">
+        <div [hidden]="!formConfirmeSubscribe.address.errors.required" class="alert alert-danger py-2 mt-3">
+          L'adresse est obligatoire
+        </div>
+      </div>
+
+      <div class="field name-box my-4">
+        <input type="text" id="postalCode" formControlName="postalCode" placeholder="Code Postal" />
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.postalCode.valid)}" for="postalCode">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.postalCode.dirty && formConfirmeSubscribe.postalCode.valid}">CIVIQUE</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.postalCode.valid && (formConfirmeSubscribe.postalCode.dirty ||formConfirmeSubscribe.postalCode.touched)">
+        <div [hidden]="!formConfirmeSubscribe.postalCode.errors.required" class="alert alert-danger py-2 mt-3">
+          Le code Postal est obligatoire
+        </div>
+      </div>
+
+      <div class="field name-box my-4">
+        <input type="text" id="phoneNbr" formControlName="phoneNbr" placeholder="Téléphone" />
+        <label [ngClass]="{'isOpen': (formConfirmeSubscribe.phoneNbr.valid)}" for="phoneNbr">
+          <span [ngClass]="{'invisible': formConfirmeSubscribe.phoneNbr.dirty && formConfirmeSubscribe.phoneNbr.valid}">TEL</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formConfirmeSubscribe.phoneNbr.valid && (formConfirmeSubscribe.phoneNbr.dirty ||formConfirmeSubscribe.phoneNbr.touched)">
+        <div [hidden]="!formConfirmeSubscribe.phoneNbr.errors.required" class="alert alert-danger py-2 mt-3">
+          Le numéro de téléphone est obligatoire
+        </div>
+      </div>
+  
+      <input class="button" type="submit" value="Envoyer" />
+      <div *ngIf="validMessage != ''" class="text-danger text-center">
+          <h3 class="alert alert-danger py-2 mt-3 display-4">{{validMessage}}</h3>
+          <div class="py-2"></div>
+      </div>
+    </form>
+  </section>

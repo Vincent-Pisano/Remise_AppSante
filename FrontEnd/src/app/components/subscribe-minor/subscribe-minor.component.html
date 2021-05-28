@@ -1,0 +1,184 @@
+<section class="py-4">
+    <h1 class="mt-4">Entrez vos données</h1>
+    <input class="button" [routerLink]="['/subscribe']" type="button" value="Compte Mineur" />
+
+    <form [formGroup]="subscribeMinorForm" (ngSubmit)="onSubmit()">
+        <h4 class="mt-4">Données du parent</h4>
+        <hr class="separateur my-5" />
+        <div class="field name-box my-4">
+            <input type="text" id="nasParent" formControlName="nasParent" placeholder="Numéro d'Assurance Maladie" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.nasParent.valid)}" for="nasParent">
+                <span [ngClass]="{'invisible': formSubscribeMinor.nasParent.dirty && formSubscribeMinor.nasParent.valid}">NAS</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div *ngIf="!formSubscribeMinor.nasParent.valid && (formSubscribeMinor.nasParent.dirty ||formSubscribeMinor.nasParent.touched)">
+            <div [hidden]="!formSubscribeMinor.nasParent.errors.required" class="alert alert-danger py-2 mt-3">
+                Le nas est obligatoire
+            </div>
+            <div [hidden]="!formSubscribeMinor.nasParent.errors.minlength" class="alert alert-danger py-2 mt-3">
+                Le nas doit être d'au moins 7 charactères
+            </div>
+        </div>
+
+        <div class="field name-box my-4">
+            <input type="password" id="passwordParent" formControlName="passwordParent" placeholder="Mot de Passe" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.passwordParent.valid)}" for="passwordParent">
+                <span
+                    [ngClass]="{'invisible': formSubscribeMinor.passwordParent.dirty && formSubscribeMinor.passwordParent.valid}">MDP</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div
+            *ngIf="!formSubscribeMinor.passwordParent.valid && (formSubscribeMinor.passwordParent.dirty ||formSubscribeMinor.passwordParent.touched)">
+            <div [hidden]="!formSubscribeMinor.passwordParent.errors.required" class="alert alert-danger py-2 mt-3">
+                Le mot de passe est obligatoire
+            </div>
+            <div [hidden]="!formSubscribeMinor.passwordParent.errors.minlength" class="alert alert-danger py-2 mt-3">
+                Le mot de passe doit être d'au moins 4 charactères
+            </div>
+        </div>
+
+        <div class="field name-box my-4">
+            <input type="date" id="birthDateParent" formControlName="birthDateParent" placeholder="Date de Naissance" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.birthDateParent.valid)}" for="birthDateParent">
+                <span
+                    [ngClass]="{'invisible': formSubscribeMinor.birthDateParent.dirty && formSubscribeMinor.birthDateParent.valid}">age</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div
+            *ngIf="!formSubscribeMinor.birthDateParent.valid && (formSubscribeMinor.birthDateParent.dirty ||formSubscribeMinor.birthDateParent.touched)">
+            <div [hidden]="!formSubscribeMinor.birthDateParent.errors.required" class="alert alert-danger py-2 mt-3">
+                La date de naissance est obligatoire
+            </div>
+        </div>
+
+        <div class="field name-box my-4">
+            <input type="text" id="firstNameParent" formControlName="firstNameParent" placeholder="PRENOM" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.firstNameParent.valid)}" for="firstNameParent">
+                <span
+                    [ngClass]="{'invisible': formSubscribeMinor.firstNameParent.dirty && formSubscribeMinor.firstNameParent.valid}">Prénom</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div
+            *ngIf="!formSubscribeMinor.firstNameParent.valid && (formSubscribeMinor.firstNameParent.dirty ||formSubscribeMinor.firstNameParent.touched)">
+            <div [hidden]="!formSubscribeMinor.firstNameParent.errors.required" class="alert alert-danger py-2 mt-3">
+                Le prénom est obligatoire
+            </div>
+        </div>
+
+        <div class="field name-box my-4">
+            <input type="text" id="lastNameParent" formControlName="lastNameParent" placeholder="NOM" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.lastNameParent.valid)}" for="lastNameParent">
+                <span
+                    [ngClass]="{'invisible': formSubscribeMinor.lastNameParent.dirty && formSubscribeMinor.lastNameParent.valid}">Nom</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div
+            *ngIf="!formSubscribeMinor.lastNameParent.valid && (formSubscribeMinor.lastNameParent.dirty ||formSubscribeMinor.lastNameParent.touched)">
+            <div [hidden]="!formSubscribeMinor.lastNameParent.errors.required" class="alert alert-danger py-2 mt-3">
+                Le nom de famille est obligatoire
+            </div>
+        </div>
+
+        <h4 class="mt-5">Données du mineur</h4>
+        <hr class="separateur my-5" />
+        <div class="field name-box my-4">
+            <input type="text" id="NAS" formControlName="nas" placeholder="Numéro d'Assurance Maladie" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.nas.valid)}" for="NAS">
+                <span [ngClass]="{'invisible': formSubscribeMinor.nas.dirty && formSubscribeMinor.nas.valid}">NAS</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div *ngIf="!formSubscribeMinor.nas.valid && (formSubscribeMinor.nas.dirty ||formSubscribeMinor.nas.touched)">
+            <div [hidden]="!formSubscribeMinor.nas.errors.required" class="alert alert-danger py-2 mt-3">
+                Le nas est obligatoire
+            </div>
+            <div [hidden]="!formSubscribeMinor.nas.errors.minlength" class="alert alert-danger py-2 mt-3">
+                Le nas doit être d'au moins 7 charactères
+            </div>
+        </div>
+
+        <div class="field name-box my-4">
+            <input type="password" id="password" formControlName="password" placeholder="Mot de Passe" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.password.valid)}" for="password">
+                <span
+                    [ngClass]="{'invisible': formSubscribeMinor.password.dirty && formSubscribeMinor.password.valid}">MDP</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div
+            *ngIf="!formSubscribeMinor.password.valid && (formSubscribeMinor.password.dirty ||formSubscribeMinor.password.touched)">
+            <div [hidden]="!formSubscribeMinor.password.errors.required" class="alert alert-danger py-2 mt-3">
+                Le mot de passe est obligatoire
+            </div>
+            <div [hidden]="!formSubscribeMinor.password.errors.minlength" class="alert alert-danger py-2 mt-3">
+                Le mot de passe doit être d'au moins 4 charactères
+            </div>
+        </div>
+
+        <div class="field name-box my-4">
+            <input type="date" id="birthDate" formControlName="birthDate" placeholder="Date de Naissance" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.birthDate.valid)}" for="birthDate">
+                <span
+                    [ngClass]="{'invisible': formSubscribeMinor.birthDate.dirty && formSubscribeMinor.birthDate.valid}">age</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div
+            *ngIf="!formSubscribeMinor.birthDate.valid && (formSubscribeMinor.birthDate.dirty ||formSubscribeMinor.birthDate.touched)">
+            <div [hidden]="!formSubscribeMinor.birthDate.errors.required" class="alert alert-danger py-2 mt-3">
+                La date de naissance est obligatoire
+            </div>
+        </div>
+
+        <div class="field name-box my-4">
+            <input type="text" id="firstName" formControlName="firstName" placeholder="PRENOM" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.firstName.valid)}" for="firstName">
+                <span
+                    [ngClass]="{'invisible': formSubscribeMinor.firstName.dirty && formSubscribeMinor.firstName.valid}">Prénom</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div
+            *ngIf="!formSubscribeMinor.firstName.valid && (formSubscribeMinor.firstName.dirty ||formSubscribeMinor.firstName.touched)">
+            <div [hidden]="!formSubscribeMinor.firstName.errors.required" class="alert alert-danger py-2 mt-3">
+                Le prénom est obligatoire
+            </div>
+        </div>
+
+        <div class="field name-box my-4">
+            <input type="text" id="lastName" formControlName="lastName" placeholder="NOM" />
+            <label [ngClass]="{'isOpen': (formSubscribeMinor.lastName.valid)}" for="lastName">
+                <span
+                    [ngClass]="{'invisible': formSubscribeMinor.lastName.dirty && formSubscribeMinor.lastName.valid}">Nom</span>
+            </label>
+            <span></span>
+        </div>
+
+        <div
+            *ngIf="!formSubscribeMinor.lastName.valid && (formSubscribeMinor.lastName.dirty ||formSubscribeMinor.lastName.touched)">
+            <div [hidden]="!formSubscribeMinor.lastName.errors.required" class="alert alert-danger py-2 mt-3">
+                Le nom de famille est obligatoire
+            </div>
+        </div>
+
+        <input class="button" type="submit" value="Envoyer" />
+        <div *ngIf="validMessage != ''" class="text-danger text-center">
+            <h3 class="alert alert-danger py-2 mt-3 display-4">{{validMessage}}</h3>
+            <div class="py-2"></div>
+        </div>
+    </form>
+</section>

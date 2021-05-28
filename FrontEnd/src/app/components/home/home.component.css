@@ -1,0 +1,155 @@
+header {
+    margin: 0px auto ;
+    text-align: center;
+    width: 100%;
+    min-height: 89vh;
+    
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+header h1 
+{
+    font-size: 4em;
+}
+
+header p{
+    font-size: 2.5em;
+    color: #313a3d;
+}
+
+section h2{
+    font-size: 3em;
+}
+
+header .separateur {
+    border: 5px solid #57bfff;
+    background-color: #57bfff;
+    margin-bottom: 5%;
+    width: 45%;
+}
+
+section .separateur
+{
+    border: 5px solid #57bfff;
+    background-color: #57bfff;
+    margin-bottom: 5%;
+    width: 55%;
+}
+
+section {
+    margin: 0px auto ;
+    text-align: center;
+    width: 100%;
+    padding: 2%;
+    
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: #b6b6b6;
+}
+
+input[type="button"] {
+    
+    -webkit-appearance: none;
+    border: none;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 13px 50px;
+    font-size: 1.4em;
+    letter-spacing: 0.1em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    -webkit-transition: all 333ms ease-in-out;
+    -moz-transition: all 333ms ease-in-out;
+    -o-transition: all 333ms ease-in-out;
+    -ms-transition: all 333ms ease-in-out;
+    transition: all 333ms ease-in-out;
+}
+
+.card .separateur-little
+{
+    border: 1px solid #b6b6b6;
+    background-color: #b6b6b6;
+    width: 80%;
+}
+
+.card li
+{
+    font-size: 125%;
+    text-align: left;
+}
+
+.card-footer
+{
+    background: #57bfff;
+    -webkit-transition: all 333ms ease-in-out;
+    -moz-transition: all 333ms ease-in-out;
+    -o-transition: all 333ms ease-in-out;
+    -ms-transition: all 333ms ease-in-out;
+    transition: all 333ms ease-in-out;
+}
+
+.card-footer span
+{
+    color: white;
+
+    text-transform: uppercase;
+    width: 100%;
+    padding: 18px 0;
+    font-size: 1.45em;
+    letter-spacing: 0.075em;
+
+    -webkit-transition: all 333ms ease-in-out;
+    -moz-transition: all 333ms ease-in-out;
+    -o-transition: all 333ms ease-in-out;
+    -ms-transition: all 333ms ease-in-out;
+    transition: all 333ms ease-in-out;
+}
+
+.card-footer span:hover
+{
+    color: #57bfff;
+}
+
+.card-footer .btn:focus {
+    outline: none;
+}
+
+.card-footer:hover
+{
+    background: #313a3d;
+}
+
+@media only screen and (max-width: 1200px)
+{
+    header h1 {
+        font-size: 3em;
+    }
+    header p{
+        font-size: 2em;
+    }
+}
+
+@media only screen and (max-width: 768px)
+{
+    header h1 {
+        font-size: 2em;
+    }
+
+    section h2{
+        font-size: 2em;
+    }
+
+    header p{
+        font-size: 1.5em;
+    }
+
+    section p,
+    .card li,
+    .card span
+    {
+        font-size: 100%;
+    }
+}
+

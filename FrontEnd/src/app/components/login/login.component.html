@@ -1,0 +1,47 @@
+<section class="py-4">
+    <h1 class="mt-4">Entrez vos données</h1>
+  
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="field name-box my-4">
+        <input type="text" id="email" formControlName="email" placeholder="email" />
+        <label [ngClass]="{'isOpen': (formLogin.email.valid)}" for="email">
+          <span [ngClass]="{'invisible': formLogin.email.dirty && formLogin.email.valid}">Email</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formLogin.email.valid && (formLogin.email.dirty ||formLogin.email.touched)">
+        <div [hidden]="!formLogin.email.errors.required" class="alert alert-danger py-2 mt-3">
+          L'email est obligatoire
+        </div>
+        <div [hidden]="!formLogin.email.errors.pattern" class="alert alert-danger py-2 mt-3">
+            Format invalide
+        </div>
+      </div>
+
+      <div class="field name-box my-4">
+        <input type="password" id="password" formControlName="password" placeholder="Mot de Passe"/>
+        <label [ngClass]="{'isOpen': (formLogin.password.valid)}" for="password" >
+          <span [ngClass]="{'invisible': formLogin.password.dirty && formLogin.password.valid}">MDP</span>
+        </label>
+        <span></span>
+      </div>
+  
+      <div *ngIf="!formLogin.password.valid && (formLogin.password.dirty ||formLogin.password.touched)">
+        <div [hidden]="!formLogin.password.errors.required" class="alert alert-danger py-2 mt-3">
+          Le mot de passe est obligatoire
+        </div>
+        <div [hidden]="!formLogin.password.errors.minlength" class="alert alert-danger py-2 mt-3">
+          Le mot de passe doit être d'au moins 4 charactères
+        </div>
+      </div>
+
+      <input class="button mx-2" type="button" (click)="forgotPassword()" value="Mot de passe oublié"/>
+
+      <input class="button mx-2" type="submit" value="Se connecter" />
+      <div *ngIf="validMessage != ''" class="text-danger text-center">
+          <h3 class="alert alert-danger py-2 mt-3 display-4">{{validMessage}}</h3>
+          <div class="py-2"></div>
+      </div>
+    </form>
+  </section>

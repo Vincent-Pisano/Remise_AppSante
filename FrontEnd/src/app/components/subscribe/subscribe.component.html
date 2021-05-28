@@ -1,0 +1,88 @@
+<section class="py-4">
+  <h1 class="mt-4">Entrez vos données</h1>
+  <input class="button" [routerLink]="['/subscribe-mineur']"  type="button" value="Compte Majeur"/>
+
+  <form [formGroup]="subscribeForm" (ngSubmit)="onSubmit()">
+    <div class="field name-box my-4">
+      <input type="text" id="NAS" formControlName="nas" placeholder="Numéro d'Assurance Maladie" />
+      <label [ngClass]="{'isOpen': (formSubscribe.nas.valid)}" for="NAS">
+        <span [ngClass]="{'invisible': formSubscribe.nas.dirty && formSubscribe.nas.valid}">NAS</span>
+      </label>
+      <span></span>
+    </div>
+
+    <div *ngIf="!formSubscribe.nas.valid && (formSubscribe.nas.dirty ||formSubscribe.nas.touched)">
+      <div [hidden]="!formSubscribe.nas.errors.required" class="alert alert-danger py-2 mt-3">
+        Le nas est obligatoire
+      </div>
+      <div [hidden]="!formSubscribe.nas.errors.minlength" class="alert alert-danger py-2 mt-3">
+        Le nas doit être d'au moins 7 charactères
+      </div>
+    </div>
+
+    <div class="field name-box my-4">
+      <input type="password" id="password" formControlName="password" placeholder="Mot de Passe" />
+      <label [ngClass]="{'isOpen': (formSubscribe.password.valid)}" for="password">
+        <span [ngClass]="{'invisible': formSubscribe.password.dirty && formSubscribe.password.valid}">MDP</span>
+      </label>
+      <span></span>
+    </div>
+
+    <div *ngIf="!formSubscribe.password.valid && (formSubscribe.password.dirty ||formSubscribe.password.touched)">
+      <div [hidden]="!formSubscribe.password.errors.required" class="alert alert-danger py-2 mt-3">
+        Le mot de passe est obligatoire
+      </div>
+      <div [hidden]="!formSubscribe.password.errors.minlength" class="alert alert-danger py-2 mt-3">
+        Le mot de passe doit être d'au moins 4 charactères
+      </div>
+    </div>
+
+    <div class="field name-box my-4">
+      <input type="date" id="birthDate" formControlName="birthDate" placeholder="Date de Naissance" />
+      <label [ngClass]="{'isOpen': (formSubscribe.birthDate.valid)}" for="birthDate">
+        <span [ngClass]="{'invisible': formSubscribe.birthDate.dirty && formSubscribe.birthDate.valid}">age</span>
+      </label>
+      <span></span>
+    </div>
+
+    <div *ngIf="!formSubscribe.birthDate.valid && (formSubscribe.birthDate.dirty ||formSubscribe.birthDate.touched)">
+      <div [hidden]="!formSubscribe.birthDate.errors.required" class="alert alert-danger py-2 mt-3">
+        La date de naissance est obligatoire
+      </div>
+    </div>
+
+    <div class="field name-box my-4">
+      <input type="text" id="firstName" formControlName="firstName" placeholder="PRENOM" />
+      <label [ngClass]="{'isOpen': (formSubscribe.firstName.valid)}" for="firstName">
+        <span [ngClass]="{'invisible': formSubscribe.firstName.dirty && formSubscribe.firstName.valid}">Prénom</span>
+      </label>
+      <span></span>
+    </div>
+
+    <div *ngIf="!formSubscribe.firstName.valid && (formSubscribe.firstName.dirty ||formSubscribe.firstName.touched)">
+      <div [hidden]="!formSubscribe.firstName.errors.required" class="alert alert-danger py-2 mt-3">
+        Le prénom est obligatoire
+      </div>
+    </div>
+
+    <div class="field name-box my-4">
+      <input type="text" id="lastName" formControlName="lastName" placeholder="NOM" />
+      <label [ngClass]="{'isOpen': (formSubscribe.lastName.valid)}" for="lastName">
+        <span [ngClass]="{'invisible': formSubscribe.lastName.dirty && formSubscribe.lastName.valid}">Nom</span>
+      </label>
+      <span></span>
+    </div>
+
+    <div *ngIf="!formSubscribe.lastName.valid && (formSubscribe.lastName.dirty ||formSubscribe.lastName.touched)">
+      <div [hidden]="!formSubscribe.lastName.errors.required" class="alert alert-danger py-2 mt-3">
+        Le nom de famille est obligatoire
+      </div>
+    </div>
+
+    <input class="button" type="submit" value="Envoyer" />
+    <div *ngIf="validMessage != ''" class="text-danger text-center">
+        <h3 class="alert alert-danger py-2 mt-3 display-4">{{validMessage}}</h3>
+        <div class="py-2"></div>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,202 @@
+<header class="layer d-flex align-items-center">
+    <div class="container">
+        <div class="row h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-12">
+                <h1 class="text-uppercase text-dark font-weight-bold">Bienvenue sur App Santé !</h1>
+                <hr class="separateur my-5" />
+            </div>
+            <div class="col-lg-8">
+                <p class="text-white-75 font-weight-light mb-5">Obtenez votre permis COVID en quelques clics</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="bg-white ">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <h2 class="text-dark mt-0">Vos informations</h2>
+                <hr class="separateur my-5" />
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-sm-12 col-lg-4 mb-4">
+                        <div class="card card-common">
+                            <img class="card-img-top" [src]="['assets/images/subscribe.jpg']" width="50%" alt="Card image cap">
+                            <div class="card-body">
+                                <h3 class="card-title">Cliquez ici pour voir vos informations personnelles !</h3>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn py-0" data-toggle="modal" data-target="#infosCitizen">
+                                    <span>Informations personnelles</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4 mb-4">
+                        <div class="card card-common">
+                            <img class="card-img-top" [src]="['assets/images/login.jpg']" width="50%" alt="Card image cap">
+                            <div class="card-body">
+                                <h3 class="card-title">Cliquez ici pour voir vos informations de permis !</h3>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn py-0" data-toggle="modal" data-target="#infosPermit">
+                                    <span>Informations permis</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4 mb-4">
+                        <div class="card card-common">
+                            <img class="card-img-top" [src]="['assets/images/corridor.jpg']" width="50%" alt="Card image cap">
+                            <div class="card-body">
+                                <h3 class="card-title">Permis inactif ? Renouvellez votre permis !</h3>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn py-0" data-toggle="modal" data-target="#confirmationRenouvellement">
+                                    <span>Nouveau permis</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="confirmationRenouvellement" tabindex="-1" role="dialog" aria-labelledby="confirmationRenouvellementTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-light">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="confirmationRenouvellementTitle">Confirmer le renouvellement</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div *ngIf="renewMessage == null" class="modal-body text-dark">
+          Voulez vous renouveller votre permis ?
+        </div>
+        <div *ngIf="renewMessage != null" class="modal-body text-dark">
+            {{renewMessage}}
+          </div>
+        <div class="modal-footer">
+          <button type="button" (click)="clearRenwMessage()" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+          <button type="button" (click)="renewPermit()" class="btn btn-primary mx-2">renouveller</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="infosCitizen" tabindex="-1" role="dialog" aria-labelledby="infosCitizen" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-light">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="confirmationRenouvellementTitle">Informations du citoyen</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td class="align-middle">NAS</td>
+                        <td class="align-middle">{{ citizen.nas}}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">Mot de passe</td>
+                        <td class="align-middle">{{ citizen.password}}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">Prénom</td>
+                        <td class="align-middle">{{ citizen.firstName}}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">Nom</td>
+                        <td class="align-middle">{{ citizen.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">email</td>
+                        <td class="align-middle">{{ citizen.email }}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">sex</td>
+                        <td class="align-middle">{{ citizen.sex }}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">Age</td>
+                        <td class="align-middle">{{ citizen.birthDate }}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">Ville</td>
+                        <td class="align-middle">{{ citizen.city }}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">Adresse</td>
+                        <td class="align-middle">{{ citizen.address }}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">CIVIC</td>
+                        <td class="align-middle">{{ citizen.postalCode}}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">téléphone</td>
+                        <td class="align-middle">{{ citizen.phoneNbr }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="infosPermit" tabindex="-1" role="dialog" aria-labelledby="infosPermit" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-light">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark" id="confirmationRenouvellementTitle">Informations du permis</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div>
+            <div *ngIf="srcImage != ''" class="text-center">
+                <img src="{{srcImage}}" style="max-width: 50%;" class="img-thumbnail">
+            </div>
+            <table class="table table-striped">
+                <tbody *ngIf="flagHasPermit">
+                    <tr>
+                        <td class="align-middle">Date d'éxecution</td>
+                        <td class="align-middle">{{ permit.dateTest}}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">Date d'expiration</td>
+                        <td class="align-middle">{{ permit.dateExpiration}}</td>
+                    </tr>
+                    <tr *ngIf="permit.nbrDose != null">
+                        <td class="align-middle">Dose</td>
+                        <td class="align-middle">{{permit.nbrDose}}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle">TYPE</td>
+                        <td *ngIf="permit.nbrDose != null" class="align-middle">VACCIN</td>
+                        <td *ngIf="permit.nbrDose == null" class="align-middle">TEST</td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="!flagHasPermit">
+                    <tr>
+                        <td class="align-middle">Permis Actuel</td>
+                        <td class="align-middle">Aucun</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
